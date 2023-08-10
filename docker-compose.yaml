@@ -1,0 +1,9 @@
+version: "3.0"
+services:
+  reactnode:
+    container_name: "react-node"
+    image: "booksapp:0.1"
+    working_dir: /home/node/app/server
+    ports:
+      - "30000:5500"
+    command: "node index.js"
