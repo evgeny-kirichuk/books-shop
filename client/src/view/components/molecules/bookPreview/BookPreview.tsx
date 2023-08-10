@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import { BookData } from '~/types';
 import Button from '~atoms/button/Button';
@@ -8,7 +8,7 @@ import styles from './BookPreview.module.scss';
 export const BookPreview: React.FC<{
 	book: BookData;
 	onAdd: (book: BookData) => void;
-}> = memo(({ book, onAdd }) => {
+}> = ({ book, onAdd }) => {
 	return (
 		<div className={styles.root}>
 			{book.image ? (
@@ -37,6 +37,6 @@ export const BookPreview: React.FC<{
 			</div>
 		</div>
 	);
-});
+};
 
 BookPreview.displayName = 'BookPreview';

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { debounce } from 'lodash';
 
 import { BookData } from '~/types';
@@ -39,9 +39,9 @@ const HomePage = () => {
 		}
 	}, 500);
 
-	const addBookToCart = useCallback((book: BookData) => {
+	const addBookToCart = (book: BookData) => {
 		cartActions.addToCart(book);
-	}, []);
+	};
 
 	useEffect(() => {
 		loadBooks(inputRef.current?.value || '');

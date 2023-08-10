@@ -1,16 +1,23 @@
 const { response } = require("express");
 const { setCache } = require("../utils/cache");
 
+const googleApiDefaultUrl =
+  "https://www.googleapis.com/books/v1/volumes?maxResults=20&orderBy=relevance&maxAllowedMaturityRating=not-mature";
+const googleApiKey = process.env.GOOGLE_BOOKS_API_KEY;
+
 const getBooks = async (req, res = response) => {
   const { stringToSearch } = req.query;
+
+  if (!stringToSearch) {
+    // if we don't have a query param, we can't fetch the books
+    return res.status(422).json("Missing search query");
+  }
 
   let books = [];
 
   try {
     const booksResponse = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?maxResults=20&orderBy=relevance&maxAllowedMaturityRating=not-mature&q=${
-        stringToSearch ?? ""
-      }&key=${process.env.GOOGLE_BOOKS_API_KEY}`
+      `${googleApiDefaultUrl}&q=${stringToSearch}&key=${googleApiKey}`
     );
 
     if (!booksResponse.ok) {
@@ -28,8 +35,7 @@ const getBooks = async (req, res = response) => {
       return res.status(200).json([]);
     }
 
-    const rawBooks = booksData.items;
-    books = normalizeBooks(rawBooks);
+    books = normalizeBooks(booksData.items);
   } catch (err) {
     console.log("error happend. we could use a custom error handler here", err);
     return res.status(422).json("Unable to fetch books");
