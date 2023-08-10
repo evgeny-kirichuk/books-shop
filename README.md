@@ -6,7 +6,7 @@
 npm install
 ```
 
-2. Install client and backend apps dependencies
+2. Install client and backend app dependencies
 
 ```
 npm run install:apps
@@ -16,17 +16,16 @@ npm run install:apps
 
 # Running applications:
 
-## To run local development environment use:
+## To run a local development environment, use:
 
 ```
 npm run dev
 ```
 
-This command will run both the front-end and the back-end dev servers concurently from one terminal.
-
+This command will run both the front-end and the back-end development servers concurrently from one terminal. Open http://localhost:3300 to use the application.
 <br/>
 
-## To run local production environment use:
+## To run a local production environment, use:
 
 ```
 npm run build:client
@@ -38,11 +37,11 @@ This command will prepare the static front-end build.
 npm run server:prod
 ```
 
-This command will run the backend. The backend app automatically uses the front-end build.
+This command will run the backend on http://localhost:5500. The backend app serves the front-end build.
 
 <br/>
 
-## To run conteinerized production environment use:
+## To run a Dockerized production environment, use:
 
 ```
 npm run build:client
@@ -54,13 +53,13 @@ This command will prepare the static front-end build.
 docker build -t booksapp:0.1 .
 ```
 
-This command will build the image with both fronend and backed apps.
+This command will build the image with both frontend and backend apps.
 
 ```
 docker-compose -f docker-compose.yaml up reactnode
 ```
 
-This command will run the container on http://localhost:30000
+This command will run the containerized app on http://localhost:30000
 
 <br/><br/>
 
@@ -76,13 +75,21 @@ npm run test:client
 
 # Extra features:
 
-- auto themenig
-- service worker
-- offline mode and message
--
+- Auto theming. The color scheme automatically matches the dark or light system theme.
+- Service-Worker with production mode allows to store frontend static files in browser and use them even without an internet connection.
+- Offline mode. If you turn the network off, you can still refresh the page and interact with the app.
+- Atomic components structure is easy to use and scale.
 
-future improvements:
+  You can read more about my view of react apps in [my article](https://medium.com/@kirichuk/7-must-have-features-for-any-react-app-10b086038d9a)
 
-- add pagination as now the app shows only 20 most relevant results.
-- add typescript to the backend
-- add swagger to the backend to build an openApi schema and use converter to build types for the front-end app from the openApi schema. So we have a contract between tiers.
+- In-memory cache for third-party dependent requests allows you to not wait for long requests each time.
+
+<br/><br/>
+
+# Future improvements:
+
+- Add pagination, as now the app shows only the 20 most relevant results.
+- Add TypeScript to the backend.
+- Add swagger to the backend to build an openApi schema and use the converter to build types for the front-end app from the openApi schema. So we have a contract between tiers.
+- Add a global state manager to the frontend so it's simpler to scale the app.
+- Optimize Docker Compose to install server dependencies after the container starts.
