@@ -1,3 +1,7 @@
+# Prerequisites
+
+> To run the app, you need Node.js version 18 or higher.
+
 # Installation:
 
 1. Install root dependencies
@@ -76,7 +80,7 @@ npm run test:client
 # Extra features:
 
 - Auto theming. The color scheme automatically matches the dark or light system theme.
-- Service-Worker with production mode allows to store frontend static files in browser and use them even without an internet connection.
+- Service-Worker with production mode allows to store frontend static files and latest api responses in the browser and use them even without an internet connection.
 - Offline mode. If you turn the network off, you can still refresh the page and interact with the app.
 - Atomic components structure is easy to use and scale.
 
@@ -92,4 +96,6 @@ npm run test:client
 - Add TypeScript to the backend.
 - Add swagger to the backend to build an openApi schema and use the converter to build types for the front-end app from the openApi schema. So we have a contract between tiers.
 - Add a global state manager to the frontend so it's simpler to scale the app.
+- Add a schema validator to both frontend and backend apps to validate request and response body schemes. For example, Zod
+- To scale the app codebase, we would add a monorepo build system such as Nx. It would allow for common components between applications and speed up deployment. You can check out [my speech about NX monorepo features](https://youtu.be/0B84XEP81Ko?t=38).
 - Optimize Docker Compose to install server dependencies after the container starts.

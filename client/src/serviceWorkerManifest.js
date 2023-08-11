@@ -40,7 +40,7 @@ registerRoute(navigationRoute);
 
 registerRoute(
 	({ url }) => {
-		return url.origin.includes('api/books');
+		return url.pathname.includes('api/books');
 	},
 	new StaleWhileRevalidate({
 		cacheName: `${process.env.APP_NAME}-api-responses`,
